@@ -1,3 +1,6 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page session="true"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,7 +59,7 @@
 						<a href="#"><i class="halflings-icon cog"></i></a>
 					</div>
 					<h2>Login to your account</h2>
-					<form class="form-horizontal" action="index.html" method="post">
+					<form class="form-horizontal" action="<c:url value='j_spring_security_check' />" method="post">
 						<fieldset>
 
 							<div class="input-prepend" title="Username">
@@ -77,7 +80,11 @@
 								<button type="submit" class="btn btn-primary">Login</button>
 							</div>
 							<div class="clearfix"></div>
-					</form>
+
+                            <input type="hidden" name="${_csrf.parameterName}"
+                                   value="${_csrf.token}" />
+
+                    </form>
 					<hr>
 					<h3>Forgot Password?</h3>
 					<p>
