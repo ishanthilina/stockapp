@@ -20,10 +20,9 @@ import java.util.Collection;
  */
 
 @Controller
-@RequestMapping("/login")
 public class LoginController {
-    @RequestMapping(method = RequestMethod.GET)
-    public String printWelcome(ModelMap model,
+    @RequestMapping(value = "/login",method = RequestMethod.GET)
+    public String login(ModelMap model,
                                @RequestParam(value = "success", required = false) String success
                              )
     {
@@ -44,5 +43,11 @@ public class LoginController {
 
         model.addAttribute("message", "Hello world!");
         return "login";
+    }
+
+    @RequestMapping(value = "/accessdenied",method = RequestMethod.GET)
+    public String accessDenied(ModelMap model)
+    {
+        return "403";
     }
 }

@@ -18,6 +18,8 @@
         <logout logout-success-url="/login?logout"  />
         <!-- enable csrf protection -->
         <csrf/>
+
+        <access-denied-handler error-page="/accessdenied" />
     </http>
 
     <authentication-manager>
