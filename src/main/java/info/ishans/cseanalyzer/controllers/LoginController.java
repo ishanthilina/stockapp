@@ -1,4 +1,4 @@
-package info.ishans;
+package info.ishans.cseanalyzer.controllers;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

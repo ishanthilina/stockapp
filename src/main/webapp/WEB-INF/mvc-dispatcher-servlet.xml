@@ -8,7 +8,7 @@
         http://www.springframework.org/schema/task/spring-task-3.0.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <context:component-scan base-package="info.ishans"/>
+    <context:component-scan base-package="info.ishans.cseanalyzer.controllers"/>
 
     <task:annotation-driven/>
 
@@ -33,11 +33,18 @@
 
     <!--uncomment ethe following to enable a postgresql datasource-->
 
-    <!--<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
-        <!--<property name="driverClassName" value="org.postgresql.Driver"/>-->
-        <!--<property name="url" value="jdbc:postgresql://${OPENSHIFT_POSTGRESQL_DB_HOST}:${OPENSHIFT_POSTGRESQL_DB_PORT}/${OPENSHIFT_APP_NAME}"/>-->
-        <!--<property name="username" value="${OPENSHIFT_POSTGRESQL_DB_USERNAME}"/>-->
-        <!--<property name="password" value="${OPENSHIFT_POSTGRESQL_DB_PASSWORD}"/>-->
-    <!--</bean>-->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.postgresql.Driver"/>
+        <property name="url" value="jdbc:postgresql://${OPENSHIFT_POSTGRESQL_DB_HOST}:${OPENSHIFT_POSTGRESQL_DB_PORT}/${OPENSHIFT_APP_NAME}"/>
+        <property name="username" value="${OPENSHIFT_POSTGRESQL_DB_USERNAME}"/>
+        <property name="password" value="${OPENSHIFT_POSTGRESQL_DB_PASSWORD}"/>
+    </bean>
+
+    <!--todo -move the follwoing to a seperate xml-->
+    <bean id="bulkDataWriter" class="info.ishans.cseanalyzer.data.BulkDataWriter">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+    <bean id="dataImportScheduler" class="info.ishans.cseanalyzer.schedulers.DataImportScheduler"></bean>
 
 </beans>
