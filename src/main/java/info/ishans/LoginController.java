@@ -1,9 +1,15 @@
 package info.ishans;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.Collection;
 
 /**
  * Created with IntelliJ IDEA.
@@ -17,7 +23,25 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/login")
 public class LoginController {
     @RequestMapping(method = RequestMethod.GET)
-    public String printWelcome(ModelMap model) {
+    public String printWelcome(ModelMap model,
+                               @RequestParam(value = "success", required = false) String success
+                             )
+    {
+
+        if(success !=null){
+            Collection<GrantedAuthority> authorities = (Collection<GrantedAuthority>)
+                    SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+
+            //if this is an admin
+            if(authorities.contains(new SimpleGrantedAuthority("ROLE_ADMIN"))){
+                return "redirect:admin";
+            }
+            else if(authorities.contains(new SimpleGrantedAuthority("ROLE_USER"))){
+                return "redirect:app";
+            }
+
+        }
+
         model.addAttribute("message", "Hello world!");
         return "login";
     }

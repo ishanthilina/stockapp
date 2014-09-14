@@ -9,17 +9,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * Created with IntelliJ IDEA.
  * User: ishan
  * Date: 9/14/14
- * Time: 2:53 PM
+ * Time: 5:22 PM
  * To change this template use File | Settings | File Templates.
  */
 
 @Controller
-@RequestMapping("/admin")
-
-public class AdminController {
+@RequestMapping("/app")
+public class UserController {
     @RequestMapping(method = RequestMethod.GET)
     public String printWelcome(ModelMap model) {
         model.addAttribute("message", "Hello world!");
-        return "adminpage";
+        return "userstartpage";
     }
 }
