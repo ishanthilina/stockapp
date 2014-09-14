@@ -12,6 +12,8 @@
 
     <task:annotation-driven/>
 
+    <mvc:annotation-driven/>
+
     <!--To import environment variables-->
     <context:property-placeholder />
 
@@ -22,7 +24,12 @@
     </bean>
 
     <!--map resources-->
-    <mvc:resources mapping="/resources/**" location="/resources/" />
+    <mvc:resources mapping="/css/**" location="resources/css/" />
+    <mvc:resources mapping="/font/**" location="resources/font/" />
+    <mvc:resources mapping="/img/**" location="resources/img/" />
+    <mvc:resources mapping="/js/**" location="resources/js/" />
+
+
 
     <!--uncomment ethe following to enable a postgresql datasource-->
 
