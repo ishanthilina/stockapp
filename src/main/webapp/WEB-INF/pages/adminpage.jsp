@@ -21,5 +21,8 @@
                 href="javascript:formSubmit()"> Logout</a>
         </h2>
     </c:if>
+
+    <button type="button" onClick="parent.location='<c:url value='/admin/manualdataimport/tradesummary' />'" >Manual import trade summary</button>
+
 </body>
 </html>
