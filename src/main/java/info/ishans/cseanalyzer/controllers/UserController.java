@@ -19,6 +19,6 @@ public class UserController {
     @RequestMapping(method = RequestMethod.GET)
     public String printWelcome(ModelMap model) {
         model.addAttribute("message", "Hello world!");
-        return "userstartpage";
+        return "charts";
     }
 }
